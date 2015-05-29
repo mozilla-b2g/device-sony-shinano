@@ -370,6 +370,11 @@ service rmt_storage /system/bin/rmt_storage
     class core
     user root
 
+# Make sure we have a proper time and set being set
+service timekeep /system/bin/timekeep restore
+    class core
+    oneshot
+
 #QCOM prop
 service netmgrd /system/bin/netmgrd
     class main

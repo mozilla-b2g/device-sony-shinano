@@ -221,8 +221,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PACKAGES += \
     nfcd \
-    init.sh
+    init.sh \
+    timekeep
 
 PRODUCT_COPY_FILES += \
     device/sony/shinano/qpnp_pon.kl:system/usr/keylayout/qpnp_pon.kl \
-    device/sony/shinano/volume.cfg:system/etc/volume.cfg
+    device/sony/shinano/volume.cfg:system/etc/volume.cfg \
+    $(LOCAL_PATH)/timekeep-service/TimeKeepService.js:system/b2g/distribution/bundles/timekeep/TimeKeepService.js \
+    $(LOCAL_PATH)/timekeep-service/chrome.manifest:system/b2g/distribution/bundles/timekeep/chrome.manifest
