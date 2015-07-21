@@ -24,6 +24,12 @@ if [ -z "${MANUFACTURER}" ]; then
     exit 1
 fi;
 
+if [ ! -f "vendor/${MANUFACTURER}/${DEVICE}/${DEVICE}-partial.mk" ]; then
+    pushd ../../../
+        device/${MANUFACTURER}/shinano/download-sony-blobs.sh || exit 1
+    popd
+fi;
+
 if [[ -z "${ANDROIDFS_DIR}" ]]; then
     ANDROIDFS_DIR=../../../backup-${DEVICE}
 fi
