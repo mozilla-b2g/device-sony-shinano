@@ -9,17 +9,17 @@ TOMORROW=$((${NOW} + 1000 * 60 * 60 * 24 * 1))
 
 DIR=download-shinano
 
-if [ ! -x "$(which w3m)" ]; then
-  echo "No W3M. Please either install W3M or download Sony blobs from ${EULA_URL}"
-  echo "and place the ${ZIP_FILE} file at ${PWD}/${DIR}/"
-  exit 1
-fi;
-
 mkdir -p ${DIR} && (cd ${DIR} && sha1sum --status -c ../device/sony/shinano/blobs-sha1.txt) ||
 (
   SDK_URL="${URL_BASE}/$(curl -s ${EULA_URL} | grep 'var sdk' | cut -d"'" -f2)${TOMORROW}"
 
   REPLY=""
+
+  if [ ! -x "$(which w3m)" ]; then
+      echo "No W3M. Please either install W3M or download Sony blobs from ${EULA_URL}"
+      echo "and place the ${ZIP_FILE} file at ${PWD}/${DIR}/"
+      exit 1
+  fi;
 
   w3m -o display_charset=UTF-8 ${EULA_URL} | head -n-15; echo "TO DOWNLOAD SONY BLOBS, PLEASE TYPE: I ACCEPT THE LICENSE" && read REPLY
 
