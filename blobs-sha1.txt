@@ -1,1 +1,1 @@
-5da8f9e92204b2e1b4a07a12e3b5675508742363  SW_binaries_for_Xperia_AOSP_L_MR1_v9.zip
+0c7b4b7784defe56ac850427c98023e89b6f43c2  SW_binaries_for_Xperia_AOSP_L_MR1_v11.zip
