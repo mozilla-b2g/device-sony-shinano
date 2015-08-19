@@ -14,6 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+if [ -f ../../../vendor/qcom/proprietary/qcom-firmware.mk ]; then
+    echo "You already have the proprietary blobs. Nice!"
+    exit 0
+fi
+
 if [ -z "${DEVICE}" ]; then
     echo "You need to define the DEVICE."
     exit 1
