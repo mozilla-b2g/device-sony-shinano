@@ -45,7 +45,7 @@ fi
 echo Pulling files from ${ANDROIDFS_DIR}
 DEVICE_BUILD_ID=`cat ${ANDROIDFS_DIR}/system/build.prop | grep ro.build.display.id | sed -e 's/ro.build.display.id=//' | tr -d '\n\r'`
 
-if [[ "${DEVICE_BUILD_ID}" != "23.1.A.1.28" ]]; then
+if [[ "${DEVICE_BUILD_ID}" != "23.4.A.0.546" ]]; then
     echo Invalid system backup - Wrong base version found: ${DEVICE_BUILD_ID}.
     echo
     echo Do this:
