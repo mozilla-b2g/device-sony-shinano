@@ -225,6 +225,8 @@ PRODUCT_PACKAGES += \
     bluetooth.default
 
 ENABLE_LIBRECOVERY := true
+RECOVERY_EXTERNAL_STORAGE := /data/media/0
+export USE_SET_METADATA := true
 
 # Enable virtual home button for b2g
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -232,8 +234,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.moz.nfc.enabled=true
 
 PRODUCT_PACKAGES += \
-    nfcd \
     init.sh \
+    librecovery \
+    nfcd \
     timekeep
 
 PRODUCT_COPY_FILES += \
