@@ -50,12 +50,15 @@ fi
 echo Pulling files from ${ANDROIDFS_DIR}
 DEVICE_BUILD_ID=`cat ${ANDROIDFS_DIR}/system/build.prop | grep ro.build.display.id | sed -e 's/ro.build.display.id=//' | tr -d '\n\r'`
 
-if [[ "${DEVICE_BUILD_ID}" != "23.4.A.0.546" ]]; then
+if [[ "${DEVICE_BUILD_ID}" != "23.4.A.0.546" ]] && [[ "${DEVICE_BUILD_ID}" != "23.4.A.1.200" ]]; then
     echo Invalid system backup - Wrong base version found: ${DEVICE_BUILD_ID}.
     echo
     echo Do this:
     echo 1. Delete backup-${DEVICE}
     echo 2. Flash your device with L based images from the vendor
+    echo 2. Flash your device with L based images from the vendor, one of:
+    echo     - 23.4.A.0.546
+    echo     - 23.4.A.1.200
     echo 3. Try building again
     exit -1
 fi
