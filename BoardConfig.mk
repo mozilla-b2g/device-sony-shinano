@@ -115,6 +115,7 @@ BOARD_SEPOLICY_DIRS += \
 
 BOARD_SEPOLICY_UNION += \
     addrsetup.te \
+    b2g.te \
     device.te \
     file.te \
     property.te \
