@@ -121,6 +121,7 @@ BOARD_SEPOLICY_UNION += \
     b2g.te \
     device.te \
     file.te \
+    tfa_amp.te \
     property.te \
     sct.te \
     sensors.te \
