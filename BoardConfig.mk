@@ -134,5 +134,6 @@ BOARD_SEPOLICY_UNION += \
     thermanager.te \
     timekeep.te \
     file_contexts \
+    genfs_contexts \
     property_contexts \
     service_contexts
