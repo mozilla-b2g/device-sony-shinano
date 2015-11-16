@@ -12,12 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+SONY_ROOT = device/sony/shinano/rootdir
+
 SOMC_PLATFORM := shinano
 
 DEVICE_PACKAGE_OVERLAYS += \
     device/sony/shinano/overlay
 
-SONY_ROOT = device/sony/shinano/rootdir
 PRODUCT_COPY_FILES += \
     $(SONY_ROOT)/init.recovery.shinano.rc:root/init.recovery.shinano.rc \
     $(SONY_ROOT)/init.shinano.rc:root/init.shinano.rc \
@@ -57,7 +58,6 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += \
     $(SONY_ROOT)/system/etc/audio_effects.conf:system/vendor/etc/audio_effects.conf \
-    $(SONY_ROOT)/system/etc/audio_policy.conf:system/etc/audio_policy.conf \
     $(SONY_ROOT)/system/etc/media_codecs.xml:system/etc/media_codecs.xml \
     $(SONY_ROOT)/system/etc/media_profiles.xml:system/etc/media_profiles.xml \
     $(SONY_ROOT)/system/etc/audio_platform_info.xml:system/etc/audio_platform_info.xml \
@@ -78,20 +78,15 @@ PRODUCT_COPY_FILES += \
     $(SONY_ROOT)/system/usr/keylayout/mhl-rcp.kl:system/usr/keylayout/mhl-rcp.kl \
     $(SONY_ROOT)/system/usr/keylayout/msm8974-taiko-mtp-snd-card_Button_Jack.kl:system/usr/keylayout/msm8974-taiko-mtp-snd-card_Button_Jack.kl
 
-#Audio
+# Audio
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio.primary.msm8974 \
     audio.r_submix.default \
     audio.usb.default \
-    libaudio-resampler \
-    libacdbloader \
-    libacdbmapper \
-    libaudcal \
-    libaudioalsa \
-    libdiag
+    libaudio-resampler
 
-# for audio.primary.msm8974
+# For audio.primary.msm8974
 PRODUCT_PACKAGES += \
     libtinyalsa \
     libtinycompress \
@@ -106,8 +101,9 @@ PRODUCT_PACKAGES += \
     libqcomvoiceprocessingdescriptors \
     libqcompostprocbundle
 
-#GFX
+# GFX
 PRODUCT_PACKAGES += \
+    copybit.msm8974 \
     gralloc.msm8974 \
     hwcomposer.msm8974 \
     memtrack.msm8974 \
@@ -120,7 +116,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libstlport
 
-#OMX
+# OMX
 PRODUCT_PACKAGES += \
     libc2dcolorconvert \
     libstagefrighthw \
@@ -130,17 +126,18 @@ PRODUCT_PACKAGES += \
     libOmxVdecHevc \
     libOmxVenc
 
+# Lights
 PRODUCT_PACKAGES += \
     lights.shinano
 
-# NFC packages
+# NFC
 PRODUCT_PACKAGES += \
     com.android.nfc_extras \
     NfcNci \
     Tag \
     nfc_nci.pn54x.default
 
-#GPS
+# GPS
 PRODUCT_PACKAGES += \
     libloc_api_v02 \
     libloc_adapter \
@@ -149,7 +146,7 @@ PRODUCT_PACKAGES += \
     libgps.utils \
     gps.msm8974
 
-#WLAN
+# WLAN
 PRODUCT_PACKAGES += \
     p2p_supplicant.conf \
     gsm_domains.conf \
@@ -159,15 +156,25 @@ PRODUCT_PACKAGES += \
     wpa_supplicant \
     wpa_supplicant.conf
 
+
+#CAMERA
+PRODUCT_PACKAGES += \
+    libmmcamera_interface \
+    libmmjpeg_interface \
+    libqomx_core \
+    camera.msm8974
+
 PRODUCT_PACKAGES += \
     keystore.msm8974
 
+# Misc
 PRODUCT_PACKAGES += \
     libmiscta \
     libta \
     tad_static \
     ta_qmi_service
 
+# OSS
 PRODUCT_PACKAGES += \
     timekeep \
     TimeKeep \
@@ -177,13 +184,9 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     rmt_storage
 
-#Charger
+# Charger
 PRODUCT_PACKAGES += \
     charger_res_images
-
-PRODUCT_PACKAGES += \
-    librs_jni \
-    com.android.future.usb.accessory
 
 PRODUCT_PACKAGES += \
     InCallUI \
@@ -192,13 +195,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libemoji
 
-# Filesystem management tools
-PRODUCT_PACKAGES += \
-    e2fsck
-
 # APN list
-PRODUCT_COPY_FILES += device/sample/etc/apns-full-conf.xml:system/etc/apns-conf.xml
+PRODUCT_COPY_FILES += \
+    device/sample/etc/apns-full-conf.xml:system/etc/apns-conf.xml
 
+# Keyguard
 PRODUCT_PROPERTY_OVERRIDES += \
     keyguard.no_require_sim=true
 
@@ -214,7 +215,6 @@ PRODUCT_DEX_PREOPT_DEFAULT_FLAGS := \
 $(call add-product-dex-preopt-module-config,services,--compiler-filter=speed)
 
 # Platform specific default properties
-#
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mass_storage \
     persist.data.qmi.adb_logmask=0 \
